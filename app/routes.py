@@ -29,3 +29,13 @@ def get_form_data():
         return jsonify({"message": "No messages found"}), 200
     
     return jsonify(data_list), 200
+
+@main_bp.route("/deleteFormData/<int:id>", methods=["DELETE"])
+def delete_form_data(id):
+    form_data = FormData.query.get(id)
+    if not form_data:
+        return jsonify({"error": "Data not found"}), 404
+
+    db.session.delete(form_data)
+    db.session.commit()
+    return jsonify({"message": "Data deleted successfully!"}), 200
