@@ -1,5 +1,4 @@
 from . import db
-from sqlalchemy import Column, Integer, String
 
 class FormData(db.Model):
     __tablename__ = "form_data"
